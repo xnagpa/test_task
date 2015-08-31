@@ -1,6 +1,6 @@
 class WorkersController < ApplicationController
   respond_to :html
-  before_action :find_worker, only: [:show]
+  before_action :find_worker, only: [:show, :edit, :updte]
   def new
     @worker = Worker.new
   end
@@ -23,8 +23,16 @@ class WorkersController < ApplicationController
   end
 
   def update
+
   end
+
+  def edit
+    @skills =Skill.get_skill_list(@worker)
+    @skill = Skill.new
+  end
+
   private
+
   def worker_params
     byebug
     params.require(:worker).permit(:name, :contacts, :status, :salary, :id, skill_attributes: [:skill_id])

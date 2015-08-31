@@ -1,0 +1,7 @@
+%h3 Your skills:
+%input#tags{:type=>"text", value: skills_list, readonly: true}
+=link_to 'Add additional skill','#', id: "add-skill"
+= semantic_form_for [skillable, skill], remote: true do |f|
+ = f.inputs do
+  = f.input :skill, label: "Input your skill:"
+ = f.submit "Save"
