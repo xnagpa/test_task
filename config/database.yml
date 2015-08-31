@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: utf-8
+  database: test_task_dev_db
+  host: localhost
+  pool: 5
+  username: mere_developer
+  password: kinokino
+
+test:
+  adapter: postgresql
+  encoding: utf-8
+  database: test_task_test_db
+  host: localhost
+  pool: 5
+  username: mere_developer
+  password: kinokino

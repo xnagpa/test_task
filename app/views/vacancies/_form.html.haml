@@ -1,0 +1,11 @@
+
+= semantic_form_for @vacancy, remote: remote do |f|
+ = f.inputs do
+  = f.input :title, label: "Vacancy name: "
+  = f.input  :contacts, label: "Contacts:"
+  = f.input  :salary, label: "Desired salary:"
+  = f.input  :till, label: "Actual until:"
+  = f.semantic_fields_for :skills do |skill|
+   = f.input  @vacancy.skills, label: "Choose your skills!", value: @skills.join(',')
+
+ = f.submit "Save"
