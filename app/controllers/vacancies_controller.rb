@@ -18,7 +18,7 @@ class VacanciesController < ApplicationController
     respond_with(@vacancy)
   end
 
-  def update
+  def update    
     @vacancy.update(vacancy_params)
     redirect_to @vacancy
   end
@@ -31,6 +31,7 @@ class VacanciesController < ApplicationController
   def search
     @vacancy = Vacancy.find(params[:vacancy_id])
     @workers = @vacancy.search_workers
+
   end
 
   private

@@ -10,12 +10,14 @@ given(:worker){FactoryGirl.create(:worker)}
       visit workers_path
       click_on "Create new employee"
       expect(page).to have_content('Fill worker data: ')
-
-          fill_in 'Name', with: 'Erast Petrovich Fandorin'
-          fill_in 'Contacts', with: 'xnagpa@outlook.com'
-          fill_in 'Status', with: 'Active search'
-          fill_in 'Salary', with: '100000'
+      # within (".inputs") do
+          fill_in "worker[name]", with: 'Erast Petrovich Fandorin'
+          fill_in 'worker[contacts]', with: 'xnagpa@outlook.com'
+          fill_in 'worker[status]', with: 'Active search'
+          fill_in 'worker[salary]', with: '100000'
           click_on 'Save'
+          save_and_open_page
+    #  end
 
       expect(page).to have_content('Erast Petrovich Fandorin')
       expect(page).to have_content('xnagpa@outlook.com')

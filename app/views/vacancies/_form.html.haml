@@ -4,6 +4,5 @@
   = f.input :title, label: "Vacancy name: "
   = f.input  :contacts, label: "Contacts:"
   = f.input  :salary, label: "Desired salary:"
-  = f.input  :till, label: "Actual until:"
-
+  = f.date_select :till, :default => Date.today
  = f.submit "Save"
