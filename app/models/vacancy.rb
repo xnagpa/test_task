@@ -1,6 +1,6 @@
 class Vacancy < ActiveRecord::Base
   has_many :vacancy_skills
-  has_many :skills, through: :vacancy_skills
+  has_many :skills, through: :vacancy_skills, dependent: :destroy
 
   accepts_nested_attributes_for :skills, reject_if: :all_blank
 

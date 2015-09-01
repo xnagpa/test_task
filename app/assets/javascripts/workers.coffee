@@ -2,6 +2,4 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('#tags').tagsInput('interactive':false)
-  $('#add-skill').click ->
-    $('.formtastic.skill').show()
+  $('#skill_skill').tagsInput('interactive':true)  

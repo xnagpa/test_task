@@ -23,11 +23,11 @@ class WorkersController < ApplicationController
   end
 
   def update
-
+    byebug
   end
 
   def edit
-    @skills =Skill.get_skill_list(@worker)
+    @skills = @worker.get_skills_list
     @skill = Skill.new
   end
 
