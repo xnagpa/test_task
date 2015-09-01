@@ -1,6 +1,6 @@
 class WorkersController < ApplicationController
   respond_to :html
-  before_action :find_worker, only: [:show, :edit, :updte]
+  before_action :find_worker, only: [:show, :edit, :update]
   def new
     @worker = Worker.new
   end
@@ -16,14 +16,10 @@ class WorkersController < ApplicationController
   def create
     @worker = Worker.create(worker_params)
     respond_with(@worker)
-
-  end
-
-  def destroy
   end
 
   def update
-    byebug
+    @worker = Worker.update(worker_params)
   end
 
   def edit
@@ -35,7 +31,7 @@ class WorkersController < ApplicationController
 
   def worker_params
     byebug
-    params.require(:worker).permit(:name, :contacts, :status, :salary, :id, skill_attributes: [:skill_id])
+    params.require(:worker).permit(:name, :contacts, :status, :salary, :id)
   end
 
   def find_worker

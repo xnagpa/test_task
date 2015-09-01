@@ -6,4 +6,7 @@ class Skill < ActiveRecord::Base
   has_many :workers, through: :worker_skills, dependent: :destroy
 
 
+  validates :skill, presence: true, uniqueness: true
+
+
 end
