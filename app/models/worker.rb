@@ -1,6 +1,6 @@
 class Worker < ActiveRecord::Base
   include Skillable
-  
+
   has_many :worker_skills
   has_many :skills, through: :worker_skills, dependent: :destroy
 
@@ -12,6 +12,15 @@ class Worker < ActiveRecord::Base
     message: "Use correct format of email or phone (+7XXX-XXX-XX-XX)" }
   validates :salary, presence: true
   validates :status, presence: true
+
+  def search_vacancies
+    vacancies = []
+    Vacancy.find_each do |vac|
+      vacancies << vac unless (skills & vac.skills).empty?
+    end
+    vacancies
+  end
+
 
   # def get_skills_list
   #   skills_list = []

@@ -20,11 +20,17 @@ class WorkersController < ApplicationController
 
   def update
     @worker = Worker.update(worker_params)
+    redirect_to @worker
   end
 
   def edit
     @skills = @worker.get_skills_list
     @skill = Skill.new
+  end
+
+  def search
+    @worker = Worker.find(params[:worker_id])
+    @vacancies = @worker.search_vacancies
   end
 
   private
