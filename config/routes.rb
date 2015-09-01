@@ -4,8 +4,12 @@ Rails.application.routes.draw do
       resources :skills
    end
 
-  resources :workers, concerns: [:skillable], shallow: true
-  resources :vacancies, concerns: [:skillable], shallow: true
+   concern :searchable do
+      get "search"
+   end
+
+  resources :workers, concerns: [:skillable, :searchable], shallow: true
+  resources :vacancies, concerns: [:skillable, :searchable], shallow: true
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

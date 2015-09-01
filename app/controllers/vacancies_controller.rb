@@ -1,18 +1,12 @@
 class VacanciesController < ApplicationController
   respond_to :html
-  before_action :find_vacancy, only: [:show, :update]
+  before_action :find_vacancy, only: [:show, :edit, :update]
   def new
     @vacancy = Vacancy.new
-    @skills = Skill.all
   end
 
   def index
     @vacancies = Vacancy.all
-  end
-
-  def update
-    @vacancy.update(vacancy_params)
-
   end
 
   def show
@@ -24,6 +18,21 @@ class VacanciesController < ApplicationController
     respond_with(@vacancy)
   end
 
+  def update
+    @vacancy.update(vacancy_params)
+    redirect_to @vacancy
+  end
+
+  def edit
+    @skills = @vacancy.get_skills_list
+    @skill = Skill.new
+  end
+
+  def search
+    @vacancy = Vacancy.find(params[:vacancy_id])
+    @workers = @vacancy.search_workers
+  end
+
   private
 
   def find_vacancy
@@ -31,7 +40,7 @@ class VacanciesController < ApplicationController
   end
 
   def vacancy_params
-      byebug
-      params.require(:vacancy).permit(:title, :contacts, :till, :salary,  skill_attributes: [:skill_id])
+
+      params.require(:vacancy).permit(:title, :contacts, :till, :salary)
   end
 end

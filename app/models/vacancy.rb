@@ -1,6 +1,7 @@
 class Vacancy < ActiveRecord::Base
+  include Skillable
   has_many :vacancy_skills
-  has_many :skills, through: :vacancy_skills
+  has_many :skills, through: :vacancy_skills, dependent: :destroy
 
   accepts_nested_attributes_for :skills, reject_if: :all_blank
 
@@ -9,4 +10,13 @@ class Vacancy < ActiveRecord::Base
     message: "Use correct format of email or phone (+7XXX-XXX-XX-XX)" }
   validates :salary, presence: true
   validates :till, presence: true
+
+  def search_workers
+    workers = []
+    Worker.find_each do |work|
+      workers << work unless (skills & work.skills).empty?
+    end
+    workers
+  end
+
 end

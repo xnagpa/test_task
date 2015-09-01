@@ -1,0 +1,6 @@
+#skills_form
+ %h3 Manage your skills:
+ = semantic_form_for [skillable, skill], remote: true do |f|
+  = f.inputs do
+   = f.input :skill,:input_html => { :value => skills_list }, :label => "Manage your skills:"
+  = f.submit "Save"

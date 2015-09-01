@@ -12,4 +12,5 @@
 %h3
   =vacancy.till
 %h3
-  =link_to "Edit vacancy", vacancy_path(vacancy), method: :patch
+  =link_to "Edit vacancy", edit_vacancy_path(vacancy)
+  =link_to "Search workers", vacancy_search_path(vacancy)
