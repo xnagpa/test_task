@@ -10,7 +10,8 @@
   =vacancy.salary
 %h2 Status
 %h3
-  =vacancy.till
+  Vacancy is valid till 
+  =vacancy.till.strftime("%d:%m:%y")
 %h3
   =link_to "Edit vacancy", edit_vacancy_path(vacancy)
   =link_to "Search workers", vacancy_search_path(vacancy)

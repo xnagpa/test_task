@@ -2,8 +2,7 @@ class SkillsController < ApplicationController
   before_action :find_skillable, only: [:create]
 
   def create
-    skill_list = skill_params[:skill].split(",")
-    
+    skill_list = skill_params[:skill].split(",")    
     @skillable.actualize_skills(skill_list)
   end
 

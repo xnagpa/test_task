@@ -15,6 +15,7 @@ class Vacancy < ActiveRecord::Base
     workers = []
     Worker.find_each do |work|
       workers << work unless (skills & work.skills).empty?
+      
     end
     workers
   end
