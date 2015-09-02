@@ -8,9 +8,7 @@ end
     status "MyString"
     salary "9.99"
 
-    after(:create) do |worker|
-         worker.skills << create(:mighty_skill)
-     end
+  
 
     # trait :with_programmer_skills do
     #   after(:create) do |worker|
