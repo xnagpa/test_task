@@ -1,14 +1,12 @@
 FactoryGirl.define do
-sequence :contacts do |n|
+  sequence :contacts do |n|
     "user#{n}@test.com"
-end
+  end
   factory :worker do
-    name "Erast Petrovich Fandorin"
+    name 'Сергей Петрович Брин'
     contacts
-    status "MyString"
-    salary "9.99"
-
-  
+    status 'Searching'
+    salary '9.99'
 
     # trait :with_programmer_skills do
     #   after(:create) do |worker|
@@ -21,7 +19,5 @@ end
     #      worker.skills << create(:skill, skill: "Sanitize")
     #   end
     # end
-
   end
-
 end

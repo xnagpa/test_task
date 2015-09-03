@@ -1,5 +1,4 @@
 shared_examples_for 'New entity creator' do
-
   before do
     get :new
   end

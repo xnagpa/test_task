@@ -19,7 +19,7 @@ class WorkersController < ApplicationController
   end
 
   def update
-     @worker.update(worker_params)
+    @worker.update(worker_params)
     redirect_to @worker
   end
 
@@ -37,7 +37,6 @@ class WorkersController < ApplicationController
   private
 
   def worker_params
-
     params.require(:worker).permit(:name, :contacts, :status, :salary, :id)
   end
 

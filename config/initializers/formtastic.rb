@@ -105,7 +105,6 @@ Formtastic::FormBuilder.input_class_finder = Formtastic::InputClassFinder
 # NOTE: this behavior will be default from Formtastic 4.0
 Formtastic::FormBuilder.action_class_finder = Formtastic::ActionClassFinder
 
-
 # Define custom namespaces in which to look up your Action classes. Default is
 # to look up in the global scope and in Formtastic::Actions.
 # Formtastic::FormBuilder.action_namespaces = [ ::Object, ::MyActionsModule, ::Formtastic::Actions ]

@@ -1,5 +1,4 @@
 module Skillable
-
   def get_skills_list
     skills_list = []
     skills.each do |s|
@@ -9,8 +8,8 @@ module Skillable
   end
 
   def actualize_skills(list)
-    #First, if skill was deleted, we need to delete in from DB
-    #Second, if skill was added, and it doesn't present in DB we should add it to DB
+    # First, if skill was deleted, we need to delete in from DB
+    # Second, if skill was added, and it doesn't present in DB we should add it to DB
 
     skills.delete_all
 
@@ -25,7 +24,6 @@ module Skillable
       #   #Get rid of deleted skills
       #
       #   skills.delete(temp_skill)
-
     end
   end
 end

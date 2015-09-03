@@ -1,8 +1,10 @@
+#vacancy_form
+ = semantic_form_for @vacancy, remote: remote do |f|
+  = f.inputs do
+   = f.input :title, label: "Vacancy name: "
+   = f.input  :contacts, label: "Contacts:"
+   = f.input  :salary, label: "Desired salary:"
+   %br
 
-= semantic_form_for @vacancy, remote: remote do |f|
- = f.inputs do
-  = f.input :title, label: "Vacancy name: "
-  = f.input  :contacts, label: "Contacts:"
-  = f.input  :salary, label: "Desired salary:"
-  = f.date_select :till, :default => Date.today
- = f.submit "Save"
+   = f.input :till, as: :date_select, labels: false,  order: [ :day,:month, :year], default_date: Date.today, label: "Actual until"
+  = f.submit "Save"

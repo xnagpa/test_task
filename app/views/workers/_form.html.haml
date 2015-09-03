@@ -1,9 +1,10 @@
 %h1 Fill worker data:
-
-= semantic_form_for @worker, remote: remote do |f|
- = f.inputs do
-  = f.input :name, label: "Input your full name:"
-  = f.input  :contacts, label: "Input your contacts:"
-  = f.input  :salary, label: "Input your salary:"
-  = f.input  :status, label: "Input your status:"
- = f.submit "Save"
+#worker_form
+ = semantic_form_for @worker, remote: remote do |f|
+  = f.inputs do
+   = f.input :name, label: "Input your full name:"
+   = f.input  :contacts, label: "Input your contacts:"
+   = f.input  :salary, label: "Input your salary:"
+   = f.input  :status, :as => :select, :collection => ["In active search", "Searching", "Just passing by"], label: "Input your status:"
+  = f.submit "Save"
+-# <%= f.input :author, :as => :select, :collection => [["Justin", "justin"], ["Kate", "kate"]] %>

@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
+  concern :skillable do
+    resources :skills
+  end
 
-   concern :skillable do
-      resources :skills
-   end
-
-   concern :searchable do
-      get "search"
-   end
+  concern :searchable do
+    get 'search'
+  end
 
   resources :workers, concerns: [:skillable, :searchable], shallow: true
   resources :vacancies, concerns: [:skillable, :searchable], shallow: true
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'workers#main'
+  root 'workers#main'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

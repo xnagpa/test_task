@@ -1,23 +1,22 @@
 require_relative 'acceptance_helper'
-feature 'User edits vacancy', '
+feature 'User edits worker', '
    In order to add new info or correct old
    As user
-   I want to be able to correct  vacancy data or add new skills
+   I want to be able to correct  worker data or add new skills
 ' do
   given(:vacancy) { FactoryGirl.create(:vacancy, title: 'Programmer') }
   given!(:worker) { FactoryGirl.create(:worker) }
   given!(:skill) { FactoryGirl.create(:mighty_skill) }
 
-  scenario 'User edits vacancy data' do
-    visit edit_vacancy_path(vacancy)
-    expect(page).to have_content('Edit vacancy data:')
-    fill_in 'vacancy[title]', with: 'Programmer needed'
-    within('.formtastic.vacancy') do
+  scenario 'User edits worker data' do
+    visit edit_worker_path(worker)
+    expect(page).to have_content('Fill worker data:')
+    fill_in 'worker[name]', with: 'Изуми Коната Тимотеевна'
+    within('.formtastic.worker') do
       click_on 'Save'
     end
-
-    visit vacancies_path
-    expect(page).to have_content('Programmer needed')
+    visit worker_path(worker)
+    expect(page).to have_content('Изуми Коната Тимотеевна')
   end
 
   scenario 'User adds new skill', js: true do

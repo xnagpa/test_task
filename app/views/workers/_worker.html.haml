@@ -1,15 +1,22 @@
-%h1 Worker
-%h2 Name
-%h3
-  =worker.name
-%h2 Contacts
-%h3
-  =worker.contacts
-%h2 Salary
-%h3
-  =worker.salary
-%h2 Status
-%h3
-  =worker.status
-=link_to "Edit worker data", edit_worker_path(worker)
-=link_to "Search vacancies", worker_search_path(worker)
+.box
+  %h2
+    Employee
+    =link_to worker.name, worker
+  %p
+    =link_to "Edit worker data", edit_worker_path(worker), class: 'btn btn-info'
+  %p
+    =link_to "Search vacancies", worker_search_path(worker), class: 'btn btn-warning'
+  = render 'skills/skill', skills: worker.skills
+  %h3 Name
+  %p
+    =worker.name
+  %h3 Contacts
+  %p
+    =worker.contacts
+
+  %h3 Salary
+  %p
+    =number_to_currency(worker.salary, :unit => "$")
+  %h3 Status
+  %p
+    =worker.status
