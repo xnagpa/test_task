@@ -1,4 +1,16 @@
 %h1 search results
--@vacancies.each do |vac|
-  =link_to vac.title, vac
-  %br
+%h2 Vacancies full
+-if @vacancies_full.empty?
+  %h3 Didn't find anything for you((
+-else
+  -@vacancies_full.each do |v|
+    =link_to v.title, v
+    %br
+
+%h2 Vacancies partial
+-if @vacancies_partial.empty?
+  %h3 Didn't find anything for you((
+-else
+  -@vacancies_partial.each do |v|
+    =link_to v.title, v
+    %br

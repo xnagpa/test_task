@@ -11,13 +11,22 @@ class Vacancy < ActiveRecord::Base
   validates :salary, presence: true
   validates :till, presence: true
 
-  def search_workers
-    workers = []
-    Worker.find_each do |work|
-      workers << work unless (skills & work.skills).empty?
-      
-    end
-    workers
+  def search_workers_full
+    # workers = []
+    # Worker.find_each do |work|
+    #   workers << work unless (skills & work.skills).empty?
+    workers_full =  Worker.where(' not exists( (select vs.skill_id from vacancy_skills vs where vs.vacancy_id=?) except
+(select ws.skill_id from worker_skills ws where ws.worker_id = workers.id) )',id)
   end
 
+    def search_workers_partial
+        workers_full_and_partial=  Worker.where('workers.id in (select ws.worker_id from worker_skills ws inner join vacancy_skills vs on ws.skill_id=vs.skill_id where vs.vacancy_id=?)',id)
+        workers_full = search_workers_full
+      
+        if workers_full_and_partial == workers_full
+          workers_full
+        else
+          workers_partial = workers_full_and_partial - workers_full
+        end
+    end
 end

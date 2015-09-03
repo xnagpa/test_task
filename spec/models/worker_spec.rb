@@ -4,6 +4,7 @@ RSpec.describe Worker, type: :model do
   let!(:vacancy_programmer){FactoryGirl.create(:vacancy)}
   let!(:worker){FactoryGirl.create(:worker)}
   let!(:skill){FactoryGirl.create(:mighty_skill)}
+  let!(:another_skill){FactoryGirl.create(:mighty_skill)}
 
 
   it { expect(subject).to validate_presence_of :name}
@@ -22,15 +23,29 @@ RSpec.describe Worker, type: :model do
   let(:entity){worker}
   it_behaves_like 'Skills actualizer'
 
+
   it "searches for those who have skills" do
     worker.skills<<skill
     vacancy_programmer.skills<<skill
-    expect(worker.search_vacancies[0]).to eq vacancy_programmer
+    expect(worker.search_vacancies_full[0]).to eq vacancy_programmer
+  end
+
+  it "searches for those who have skills partially " do
+    worker.skills<<skill
+    vacancy_programmer.skills << skill
+    vacancy_programmer.skills << another_skill
+    expect(worker.search_vacancies_partial[0]).to eq vacancy_programmer
   end
 
   it " doesnt search  for those who doesnt have skills" do
     vacancy_programmer.skills<<skill
-    expect(worker.search_vacancies[0]).to be_nil
+    expect(worker.search_vacancies_full[0]).to be_nil
+  end
+
+  it " doesnt search  for those who doesnt have skills even partially" do
+    vacancy_programmer.skills << skill
+    vacancy_programmer.skills << another_skill
+    expect(worker.search_vacancies_partial[0]).to be_nil
   end
 
 

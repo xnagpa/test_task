@@ -30,7 +30,8 @@ class WorkersController < ApplicationController
 
   def search
     @worker = Worker.find(params[:worker_id])
-    @vacancies = @worker.search_vacancies
+    @vacancies_partial = @worker.search_vacancies_partial
+    @vacancies_full = @worker.search_vacancies_full
   end
 
   private

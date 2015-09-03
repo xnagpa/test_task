@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Vacancy, type: :model do
   let!(:vacancy){FactoryGirl.create(:vacancy)}
-  let!(:worker){FactoryGirl.create(:worker)}
+  let(:worker){FactoryGirl.create(:worker)}
   let!(:skill){FactoryGirl.create(:mighty_skill)}
+  let!(:another_skill){FactoryGirl.create(:mighty_skill)}
 
   it { expect(subject).to validate_presence_of :title}
   it { expect(subject).to validate_presence_of :contacts}
@@ -19,15 +20,29 @@ RSpec.describe Vacancy, type: :model do
   let(:entity){vacancy}
   it_behaves_like 'Skills actualizer'
 
-  it "searches for those who have skills" do
-    vacancy.skills<<skill
-    worker.skills<<skill
-    expect(vacancy.search_workers[0]).to eq worker
-  end
 
-  it " doesnt search  for those who doesnt have skills" do
-    vacancy.skills<<skill
-    expect(vacancy.search_workers[0]).to be_nil
-  end
+    it "searches for those who have skills" do
+      vacancy.skills<<skill
+      worker.skills<<skill
+      expect(vacancy.search_workers_full[0]).to eq worker
+    end
 
+    it "searches for those who have skills partially " do
+      vacancy.skills<<skill
+      vacancy.skills << another_skill
+      worker.skills << skill
+      expect(vacancy.search_workers_partial[0]).to eq worker
+    end
+
+    it " doesnt search  for those who doesnt have skills" do
+      worker.skills<<skill
+      vacancy.skills<<another_skill
+      expect(vacancy.search_workers_full[0]).to be_nil
+    end
+
+    it " doesnt search  for those who doesnt have skills even partially" do
+      worker.skills<<skill
+      vacancy.skills<<another_skill
+      expect(vacancy.search_workers_partial[0]).to be_nil
+    end
 end
