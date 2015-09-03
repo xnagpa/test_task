@@ -20,7 +20,7 @@ class Worker < ActiveRecord::Base
     #   vacancies << vac unless (skills & vac.skills).empty?
     # end
     # more effective
-    vacancies_full_and_partial = Vacancy.where('vacancies.id in (select vs.vacancy_id from vacancy_skills vs inner join worker_skills ws on ws.skill_id=vs.skill_id where ws.worker_id=?) and vacancies.till > ?', id, Date.today)
+    vacancies_full_and_partial = Vacancy.where('vacancies.id in (select vs.vacancy_id from vacancy_skills vs inner join worker_skills ws on ws.skill_id=vs.skill_id where ws.worker_id=?) and vacancies.till > current_date', id)
     vacancies_full_partial = vacancies_full_and_partial - search_vacancies_full
   end
 
@@ -28,6 +28,6 @@ class Worker < ActiveRecord::Base
     #     vacancies_full = Vacancy.where('not exists( (select vs.skill_id from vacancy_skills vs where vs.vacancy_id=vacancies.id) except
     # (select ws.skill_id from worker_skills ws where ws.worker_id = ?)) and vacancies.till < ?', id, Date.today)
     vacancies_full = Vacancy.where('not exists( (select vs.skill_id from vacancy_skills vs where vs.vacancy_id=vacancies.id) except
-(select ws.skill_id from worker_skills ws where ws.worker_id = ?)) and vacancies.till > ? ', id, Date.today)
+(select ws.skill_id from worker_skills ws where ws.worker_id = ?)) and vacancies.till > current_date ', id)
   end
 end
