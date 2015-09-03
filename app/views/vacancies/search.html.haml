@@ -1,4 +1,19 @@
-%h1 search results
--@workers.each do |work|
-  =link_to work.name, work
-  %br
+%h1 Search results:
+%h2 Workers full
+-if @workers_full.empty?
+  %h4 Didn't find anything for you((
+-else
+  -@workers_full.each do |work|
+    =link_to work.name, work
+    ,
+    =number_to_currency(work.salary, :unit => "$")
+    %br
+%h2 Workers partial
+-if @workers_partial.empty?
+  %h4 Didn't find anything for you((
+-else
+  -@workers_partial.each do |work|
+    =link_to work.name, work
+    ,
+    =number_to_currency(work.salary, :unit => "$")
+    %br

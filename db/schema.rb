@@ -11,47 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821102348) do
-
+ActiveRecord::Schema.define(version: 20_150_821_102_348) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "skills", force: :cascade do |t|
-    t.string   "skill"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'skills', force: :cascade do |t|
+    t.string 'skill'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "vacancies", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "till"
-    t.decimal  "salary"
-    t.string   "contacts"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'vacancies', force: :cascade do |t|
+    t.string 'title'
+    t.datetime 'till'
+    t.decimal 'salary'
+    t.string 'contacts'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "vacancy_skills", force: :cascade do |t|
-    t.integer  "vacancy_id"
-    t.integer  "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'vacancy_skills', force: :cascade do |t|
+    t.integer 'vacancy_id'
+    t.integer 'skill_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "worker_skills", force: :cascade do |t|
-    t.integer  "worker_id"
-    t.integer  "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'worker_skills', force: :cascade do |t|
+    t.integer 'worker_id'
+    t.integer 'skill_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "workers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "contacts"
-    t.string   "status"
-    t.decimal  "salary"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'workers', force: :cascade do |t|
+    t.string 'name'
+    t.string 'contacts'
+    t.string 'status'
+    t.decimal 'salary'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

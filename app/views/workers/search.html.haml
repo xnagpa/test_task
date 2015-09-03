@@ -1,4 +1,18 @@
-%h1 search results
--@vacancies.each do |vac|
-  =link_to vac.title, vac
-  %br
+%h1 Search results:
+%h2 Vacancies full
+-if @vacancies_full.empty?
+  %h4 Didn't find anything for you((
+-else
+  -@vacancies_full.each do |v|
+    =link_to v.title, v
+    =number_to_currency(v.salary, :unit => "$")
+    %br
+
+%h2 Vacancies partial
+-if @vacancies_partial.empty?
+  %h4 Didn't find anything for you((
+-else
+  -@vacancies_partial.each do |v|
+    =link_to v.title, v
+    =number_to_currency(v.salary, :unit => "$")
+    %br

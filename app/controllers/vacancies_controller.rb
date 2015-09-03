@@ -18,7 +18,7 @@ class VacanciesController < ApplicationController
     respond_with(@vacancy)
   end
 
-  def update    
+  def update
     @vacancy.update(vacancy_params)
     redirect_to @vacancy
   end
@@ -30,8 +30,8 @@ class VacanciesController < ApplicationController
 
   def search
     @vacancy = Vacancy.find(params[:vacancy_id])
-    @workers = @vacancy.search_workers
-
+    @workers_partial = @vacancy.search_workers_partial
+    @workers_full = @vacancy.search_workers_full
   end
 
   private
@@ -41,7 +41,6 @@ class VacanciesController < ApplicationController
   end
 
   def vacancy_params
-
-      params.require(:vacancy).permit(:title, :contacts, :till, :salary)
+    params.require(:vacancy).permit(:title, :contacts, :till, :salary)
   end
 end

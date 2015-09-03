@@ -1,17 +1,23 @@
-%h1 Vacancy
-%h2 Name
-%h3
-  =vacancy.title
-%h2 Contacts
-%h3
-  =vacancy.contacts
-%h2 Salary
-%h3
-  =vacancy.salary
-%h2 Status
-%h3
-  Vacancy is valid till 
-  =vacancy.till.strftime("%d:%m:%y")
-%h3
-  =link_to "Edit vacancy", edit_vacancy_path(vacancy)
-  =link_to "Search workers", vacancy_search_path(vacancy)
+.box
+  %h2
+    Vacancy
+    =link_to vacancy.title, vacancy
+
+  %p
+    =link_to "Edit vacancy", edit_vacancy_path(vacancy), class: 'btn btn-info'
+  %p
+    =link_to "Search workers", vacancy_search_path(vacancy), class: 'btn btn-warning'
+  = render 'skills/skill', skills: vacancy.skills
+  %h3 Contacts
+  %p
+    =vacancy.contacts
+  %h3 Salary
+  %p
+    =number_to_currency(vacancy.salary, :unit => "$")
+  %h3 Created at
+  %p    
+    =vacancy.created_at.strftime("%d:%m:%y")
+  %h3
+    %p
+      Vacancy is valid till
+      =vacancy.till.strftime("%d:%m:%y")
